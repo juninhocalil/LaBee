@@ -92,7 +92,7 @@
   }
 
   .logo-icon {
-      width: 42x;
+      width: 42px;
       height: 42px;
       object-fit: contain;
   }
@@ -223,50 +223,40 @@
   .section-head h2{font-size:clamp(2rem,3.6vw,2.8rem); margin-top:14px;}
   .section-head p{color:var(--ink-soft); margin-top:16px;}
 
-  .product-grid{display:grid; grid-template-columns:1fr 1fr; gap:36px;}
-  .product-card{
-    background:linear-gradient(180deg, var(--cream), var(--bege));
-    border-radius:28px;
-    padding:48px 42px 42px;
-    position:relative;
-    overflow:hidden;
-    box-shadow:var(--shadow-soft);
-    transition:transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  .produto-row{
+    display:grid;
+    grid-template-columns:0.85fr 1fr;
+    gap:72px;
+    align-items:center;
+    padding:20px 0;
   }
-  .product-card:hover{transform:translateY(-8px);}
-  .product-card .glow{
+  .produto-row.inverso{grid-template-columns:1fr 0.85fr;}
+  .produto-row.inverso .produto-visual{order:2;}
+  .produto-row.inverso .produto-content{order:1;}
+
+  .produto-visual{position:relative; display:flex; justify-content:center;}
+  .produto-visual .glow{
     position:absolute; width:260px; height:260px; border-radius:50%;
     background:radial-gradient(circle, rgba(255,220,150,0.6), transparent 70%);
-    top:-90px; right:-80px; filter:blur(10px); pointer-events:none;
+    top:-30px; z-index:0; filter:blur(12px); pointer-events:none;
   }
-  css/* Container da imagem: mesma altura/posicionamento que tinha antes com o SVG */
-  .product-visual{
-    height:220px;
-    display:flex;
-    align-items:center;
-    justify-content:center; /* centraliza horizontalmente */
-    margin-bottom:6px;
-  }
+  .produto-row:not(.inverso) .produto-visual .glow{right:6%;}
+  .produto-row.inverso .produto-visual .glow{left:6%;}
 
-  .product-photo{
-    width:180px;
-    height:180px;
-    object-fit:cover;
-    border-radius:18px;
-    box-shadow:0 10px 24px rgba(0,0,0,0.10);
+  .produto-photo{
+    position:relative; z-index:1;
+    width:100%; max-width:380px; aspect-ratio:1/1.05;
+    object-fit:cover; border-radius:24px;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
     transition:transform 0.5s var(--ease);
-    transform:translateY(-10px); /* sobe só a imagem, sem mexer no texto abaixo */
-    display:block;
-    margin:0 auto; /* garante centralização mesmo se o container não for flex */
-    margin-top:-16px; /* sobe a imagem — aumente o valor negativo pra subir mais */
   }
+  .produto-row:hover .produto-photo{transform:translateY(-8px);}
 
-  /* Leve zoom na foto quando o mouse passa sobre o card (opcional) */
-  .product-card:hover .product-photo{
-    transform:translateY(-10px) scale(1.05);
-  }
-  .product-card h3{font-size:1.5rem; margin-bottom:6px;}
-  .benefit-list{list-style:none; margin:18px 0 28px;}
+  .produto-content .eyebrow{display:block; margin-bottom:12px;}
+  .produto-content h3{font-size:clamp(1.7rem,2.6vw,2.2rem); margin-bottom:14px;}
+  .produto-intro{color:var(--ink-soft); font-size:1rem; margin-bottom:24px; max-width:46ch;}
+
+  .benefit-list{list-style:none; margin:0 0 28px;}
   .benefit-list li{display:flex; align-items:center; gap:10px; margin-bottom:10px; font-size:0.94rem; color:var(--ink-soft);}
   .benefit-list li svg{width:16px; height:16px; flex-shrink:0; color:var(--honey);}
   .card-btn{
@@ -276,7 +266,20 @@
     transition:gap 0.3s var(--ease);
   }
   .card-btn:hover{gap:14px;}
-  @media(max-width:840px){.product-grid{grid-template-columns:1fr;}}
+
+  /* traço tracejado que conecta os dois produtos, mesmo motivo do Ritual */
+  .produto-divider{display:flex; justify-content:center; padding:8px 0 28px;}
+  .produto-divider svg{width:220px; height:20px;}
+
+  @media(max-width:900px){
+    .produto-row, .produto-row.inverso{
+      grid-template-columns:1fr; text-align:center; gap:32px;
+    }
+    .produto-row.inverso .produto-visual{order:1;}
+    .produto-row.inverso .produto-content{order:2;}
+    .produto-intro{margin-left:auto; margin-right:auto;}
+    .benefit-list{display:inline-block; text-align:left;}
+  }
 
   /* ---------- POR QUE ---------- */
   .porque{background:var(--bege); padding:120px 0;}
@@ -329,8 +332,20 @@
   .sustent-list{margin-top:24px; display:flex; flex-direction:column; gap:16px;}
   .sustent-list li{display:flex; gap:14px; align-items:flex-start; font-size:0.95rem; color:#F1E4CE;}
   .sustent-list svg{width:20px; height:20px; color:var(--honey-light); flex-shrink:0; margin-top:2px;}
-  .sustent-art{display:flex; align-items:center; justify-content:center;}
-  .sustent-art svg{width:100%; max-width:380px;}
+  .sustent-art{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .sustent-art img{
+    width:100%;
+    max-width:480px;
+    height:auto;
+    display:block;
+    border-radius:24px;
+    object-fit:cover;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+  }
   @media(max-width:900px){.sustent-grid{grid-template-columns:1fr;} .sustent-art{order:-1;}}
 
   /* ---------- DEPOIMENTOS ---------- */
@@ -488,23 +503,24 @@
     <div class="section-head">
       <p class="eyebrow reveal">Nossa coleção</p>
       <h2 class="reveal reveal-delay-1">Rituais de autocuidado</h2>
-      <p class="reveal reveal-delay-2">Dois gestos simples, feitos para trazer leveza e aconchego para o seu dia.</p>
+      <p class="reveal reveal-delay-2">Dois gestos simples, feitos à mão, para trazer leveza e aconchego para o seu dia.</p>
     </div>
 
-    <div class="product-grid">
-      <article class="product-card reveal">
+    <!-- Vela de Cera de Abelha -->
+    <div class="produto-row reveal">
+      <div class="produto-visual">
         <div class="glow"></div>
-
-        <!-- Foto real da vela: troque o "src" pelo caminho da sua imagem -->
-        <div class="product-visual">
-          <img
-            src="images/vela.jpeg"
-            alt="Vela artesanal de cera de abelha LaBee"
-            class="product-photo"
-            loading="lazy"
-          >
-        </div>
+        <img
+          src="images/vela.jpeg"
+          alt="Vela artesanal de cera de abelha LaBee"
+          class="produto-photo"
+          loading="lazy"
+        >
+      </div>
+      <div class="produto-content">
+        <p class="eyebrow">Ritual do fogo</p>
         <h3>Vela de Cera de Abelha</h3>
+        <p class="produto-intro">Um brilho dourado que perfuma o ambiente com notas cítricas e o doce do mel — para transformar minutos comuns em uma pausa só sua.</p>
         <ul class="benefit-list">
           <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Aroma cítrico e adocicado de mel</li>
           <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Queima limpa e uniforme</li>
@@ -512,21 +528,28 @@
           <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 100% artesanal</li>
         </ul>
         <a href="https://www.instagram.com/p/DZvQuyymatU/?img_index=2" class="card-btn">Conhecer →</a>
-      </article>
+      </div>
+    </div>
 
-      <article class="product-card reveal reveal-delay-2">
+    <div class="produto-divider" aria-hidden="true">
+      <svg viewBox="0 0 200 20" fill="none" preserveAspectRatio="none"><path d="M0,10 Q50,-4 100,10 T200,10" stroke="var(--honey)" stroke-width="1.5" stroke-dasharray="3 6" fill="none"/></svg>
+    </div>
+
+    <!-- Lip Balm de Mel -->
+    <div class="produto-row inverso reveal reveal-delay-2">
+      <div class="produto-visual">
         <div class="glow"></div>
-
-        <!-- Foto real do lip balm: troque o "src" pelo caminho da sua imagem -->
-        <div class="product-visual">
-          <img
-            src="images/lipbalm.jpeg"
-            alt="Lip balm de mel LaBee"
-            class="product-photo"
-            loading="lazy"
-          >
-        </div>
+        <img
+          src="images/lipbalm.jpeg"
+          alt="Lip balm de mel LaBee"
+          class="produto-photo"
+          loading="lazy"
+        >
+      </div>
+      <div class="produto-content">
+        <p class="eyebrow">Ritual dos lábios</p>
         <h3>Lip Balm de Mel</h3>
+        <p class="produto-intro">Uma camada fina de cuidado, com hidratação que dura o dia inteiro e um toque adocicado de laranja.</p>
         <ul class="benefit-list">
           <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Hidratação intensa e duradoura</li>
           <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Proteção contra o ressecamento</li>
@@ -534,7 +557,7 @@
           <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Aroma delicado de laranja doce</li>
         </ul>
         <a href="https://www.instagram.com/p/DZvQuyymatU/?img_index=3" class="card-btn">Conhecer →</a>
-      </article>
+      </div>
     </div>
   </div>
 </section>
@@ -582,7 +605,7 @@
 </section>
 
 <!-- ===== RITUAL ===== -->
-<section class="ritual" id=site_labee"ritual">
+<section class="ritual" id="ritual">
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow reveal">O passo a passo</p>
@@ -632,17 +655,7 @@
       </ul>
     </div>
     <div class="sustent-art reveal reveal-delay-2">
-      <svg viewBox="0 0 400 400" fill="none">
-        <polygon points="200,60 320,130 320,270 200,340 80,270 80,130" fill="#6B4630" opacity="0.5"/>
-        <polygon points="200,100 280,145 280,255 200,300 120,255 120,145" fill="#8A5A3B" opacity="0.6"/>
-        <polygon points="200,140 240,162 240,238 200,260 160,238 160,162" fill="#E7B45B"/>
-        <g fill="#F1E1C4">
-          <ellipse cx="200" cy="200" rx="10" ry="14"/>
-          <rect x="192" y="192" width="16" height="2.4" rx="1"/>
-          <rect x="192" y="200" width="16" height="2.4" rx="1"/>
-        </g>
-        <path d="M200 168c-4 10-7 16-7 20a7 7 0 0014 0c0-4-3-10-7-20z" fill="#F0AE5E"/>
-      </svg>
+      <img src="images/sustentabilidade.jpeg" alt="Produção sustentável da LaBee">
     </div>
   </div>
 </section>
