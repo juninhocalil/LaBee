@@ -201,8 +201,20 @@
     padding:9px 18px; border-radius:999px; background:var(--warm-white);
     border:1px solid var(--gold-line); font-size:0.85rem; font-weight:600; color:var(--wood-deep);
   }
-  .essencia-art{position:relative; display:flex; align-items:center; justify-content:center;}
-  .essencia-art svg{width:100%; max-width:420px;}
+  .essencia-art{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .essencia-art img{
+    width:100%;
+    max-width:480px;
+    height:auto;
+    display:block;
+    border-radius:24px;
+    object-fit:cover;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+}
   @media(max-width:900px){.essencia-grid{grid-template-columns:1fr; gap:50px;} .essencia-art{order:-1;}}
 
   /* ---------- PRODUTOS ---------- */
@@ -465,24 +477,7 @@
       </div>
     </div>
     <div class="essencia-art reveal reveal-delay-2">
-      <svg viewBox="0 0 420 420" fill="none">
-        <circle cx="210" cy="210" r="180" fill="#F1E1C4"/>
-        <path d="M210 70C160 120 120 160 120 220a90 90 0 00180 0c0-60-40-100-90-150z" fill="#E7B45B"/>
-        <path d="M210 120c-32 34-58 60-58 100a58 58 0 00116 0c0-40-26-66-58-100z" fill="#FBDDA0"/>
-        <g stroke="#B25A2A" stroke-width="1.2" opacity="0.5">
-          <circle cx="210" cy="210" r="150" fill="none" stroke-dasharray="2 8"/>
-        </g>
-        <g fill="#3A2A1C">
-          <ellipse cx="300" cy="120" rx="16" ry="20"/>
-          <rect x="288" y="112" width="24" height="3" rx="1.5" fill="#F1E1C4"/>
-          <rect x="288" y="120" width="24" height="3" rx="1.5" fill="#F1E1C4"/>
-          <circle cx="300" cy="96" r="5.5"/>
-        </g>
-        <g fill="#C7602A" opacity="0.9">
-          <circle cx="105" cy="330" r="26"/>
-          <circle cx="140" cy="345" r="20"/>
-        </g>
-      </svg>
+      <img src="images/essencial.jpeg" alt="Vela de cera de abelha LaBee">
     </div>
   </div>
 </section>
@@ -587,7 +582,7 @@
 </section>
 
 <!-- ===== RITUAL ===== -->
-<section class="ritual" id="ritual">
+<section class="ritual" id=site_labee"ritual">
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow reveal">O passo a passo</p>
@@ -722,7 +717,7 @@
       <div class="footer-col">
         <h5>Contato</h5>
         <p>labee.anglotaubate@gmail.com</p>
-        <p>Entrar em contato para encomendas</p>
+        <p>Entrar em contato para encomendas via Instagram</p>
       </div>
     </div>
     <div class="footer-bottom">
