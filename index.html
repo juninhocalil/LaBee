@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LaBee — Sinta a doçura, desperte o Sol</title>
+<meta name="description" content="Rituais de autocuidado com ingredientes naturais: vela de cera de abelha e lip balm de mel, feitos à mão com aromas cítricos e produção consciente.">
+<meta property="og:title" content="LaBee — Sinta a doçura, desperte o Sol">
+<meta property="og:description" content="Rituais de autocuidado com ingredientes naturais: vela de cera de abelha e lip balm de mel, feitos à mão.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/essencial.jpeg">
+<link rel="icon" type="image/png" href="images/logo.png">
+<noscript><style>.reveal{opacity:1 !important; transform:none !important;}</style></noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600;6..12,700&display=swap" rel="stylesheet">
@@ -51,7 +58,7 @@
     letter-spacing:0.22em;
     font-size:0.72rem;
     font-weight:600;
-    color:var(--honey);
+    color:var(--burnt);
   }
 
   a{color:inherit;text-decoration:none;}
@@ -60,6 +67,22 @@
   section[id]{scroll-margin-top:90px;}
   .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
   @media(max-width:480px){.wrap{padding:0 22px;}}
+
+  /* ---------- acessibilidade: skip link + foco visível ---------- */
+  .skip-link{
+    position:absolute; left:16px; top:-60px; z-index:200;
+    background:var(--wood-deep); color:var(--warm-white);
+    padding:12px 20px; border-radius:8px; font-weight:600; font-size:0.9rem;
+    transition:top 0.3s var(--ease);
+  }
+  .skip-link:focus{top:16px;}
+
+  a:focus-visible, button:focus-visible{
+    outline:2.5px solid var(--wood-deep);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+  .nav-toggle:focus-visible{outline-offset:-2px;}
 
   /* ---------- reveal on scroll ---------- */
   .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s var(--ease), transform 0.9s var(--ease);}
@@ -163,7 +186,7 @@
   @media(max-width:480px){
     .nav{padding:16px 20px;}
     .nav.scrolled{padding:12px 20px;}
-    .nav-cta{padding:9px 16px; font-size:0.8rem;}
+    .nav > .nav-cta{display:none;} /* já disponível no menu mobile, evita aperto na barra */
   }
  
   /* ---------- HERO ---------- */
@@ -505,8 +528,10 @@
 </head>
 <body>
 
+<a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
+
 <!-- ===== NAV ===== -->
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" aria-label="Navegação principal">
   <div class="nav-logo">
       <img class="logo-icon" src="images/logo.png" alt="Logo LaBee">
   </div>
@@ -516,24 +541,24 @@
     <a href="#ritual">Ritual</a>
     <a href="#sustentabilidade">Sustentabilidade</a>
   </div>
-  <a href="https://www.instagram.com/labee.br/" class="nav-cta">Conheça a LaBee</a>
-  <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+  <a href="https://www.instagram.com/labee.br/" class="nav-cta" target="_blank" rel="noopener noreferrer">Conheça a LaBee</a>
+  <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <div class="menu-backdrop" id="menuBackdrop"></div>
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
   <a href="#essencia">Essência</a>
   <a href="#produtos">Produtos</a>
   <a href="#ritual">Ritual</a>
   <a href="#sustentabilidade">Sustentabilidade</a>
-  <a href="https://www.instagram.com/labee.br/" class="nav-cta">Conheça a LaBee</a>
+  <a href="https://www.instagram.com/labee.br/" class="nav-cta" target="_blank" rel="noopener noreferrer">Conheça a LaBee</a>
 </div>
 
 <!-- ===== HERO ===== -->
-<header class="hero">
-  <svg class="hero-rays" viewBox="0 0 400 400" fill="none">
+<header class="hero" id="conteudo-principal">
+  <svg class="hero-rays" viewBox="0 0 400 400" fill="none" aria-hidden="true">
     <g stroke="#FFF3D6" stroke-width="2" opacity="0.55">
       <line x1="200" y1="0" x2="200" y2="400"/><line x1="0" y1="200" x2="400" y2="200"/>
       <line x1="60" y1="60" x2="340" y2="340"/><line x1="340" y1="60" x2="60" y2="340"/>
@@ -542,10 +567,10 @@
     </g>
   </svg>
 
-  <svg class="hero-decor d1" viewBox="0 0 60 60" fill="none"><path d="M30 8 26 20h8L30 8z" fill="#fff" opacity="0"/><g fill="#FFE9B8"><polygon points="30,4 45,13 45,31 30,40 15,31 15,13"/></g><g fill="#F0AE5E"><polygon points="30,10 40,16 40,28 30,34 20,28 20,16"/></g></svg>
-  <svg class="hero-decor d2" viewBox="0 0 60 60" fill="none"><circle cx="30" cy="30" r="24" fill="#F7C56B"/><g stroke="#B25A2A" stroke-width="1.4"><line x1="30" y1="8" x2="30" y2="52"/><line x1="8" y1="30" x2="52" y2="30"/><line x1="14" y1="14" x2="46" y2="46"/><line x1="46" y1="14" x2="14" y2="46"/></g><circle cx="30" cy="30" r="24" fill="none" stroke="#B25A2A" stroke-width="2"/></svg>
-  <svg class="hero-decor d3" viewBox="0 0 50 60" fill="none"><ellipse cx="25" cy="34" rx="12" ry="16" fill="#3A2A1C"/><rect x="16" y="28" width="18" height="3" rx="1.5" fill="#F7C56B"/><rect x="16" y="34" width="18" height="3" rx="1.5" fill="#F7C56B"/><circle cx="25" cy="16" r="4.5" fill="#3A2A1C"/></svg>
-  <svg class="hero-decor d4" viewBox="0 0 60 60" fill="none"><path d="M30 6C30 6 12 20 12 34a18 18 0 0036 0C48 20 30 6 30 6z" fill="#F0AE5E"/><path d="M30 44c8 0 10-8 10-8s-6 2-10 2-10-2-10-2 2 8 10 8z" fill="#FBDDA0"/></svg>
+  <svg class="hero-decor d1" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M30 8 26 20h8L30 8z" fill="#fff" opacity="0"/><g fill="#FFE9B8"><polygon points="30,4 45,13 45,31 30,40 15,31 15,13"/></g><g fill="#F0AE5E"><polygon points="30,10 40,16 40,28 30,34 20,28 20,16"/></g></svg>
+  <svg class="hero-decor d2" viewBox="0 0 60 60" fill="none" aria-hidden="true"><circle cx="30" cy="30" r="24" fill="#F7C56B"/><g stroke="#B25A2A" stroke-width="1.4"><line x1="30" y1="8" x2="30" y2="52"/><line x1="8" y1="30" x2="52" y2="30"/><line x1="14" y1="14" x2="46" y2="46"/><line x1="46" y1="14" x2="14" y2="46"/></g><circle cx="30" cy="30" r="24" fill="none" stroke="#B25A2A" stroke-width="2"/></svg>
+  <svg class="hero-decor d3" viewBox="0 0 50 60" fill="none" aria-hidden="true"><ellipse cx="25" cy="34" rx="12" ry="16" fill="#3A2A1C"/><rect x="16" y="28" width="18" height="3" rx="1.5" fill="#F7C56B"/><rect x="16" y="34" width="18" height="3" rx="1.5" fill="#F7C56B"/><circle cx="25" cy="16" r="4.5" fill="#3A2A1C"/></svg>
+  <svg class="hero-decor d4" viewBox="0 0 60 60" fill="none" aria-hidden="true"><path d="M30 6C30 6 12 20 12 34a18 18 0 0036 0C48 20 30 6 30 6z" fill="#F0AE5E"/><path d="M30 44c8 0 10-8 10-8s-6 2-10 2-10-2-10-2 2 8 10 8z" fill="#FBDDA0"/></svg>
 
   <div class="hero-content">
     <p class="eyebrow reveal">Autocuidado natural</p>
@@ -559,7 +584,7 @@
 
 </header>
 
-<div class="drip-divider">
+<div class="drip-divider" aria-hidden="true">
   <svg viewBox="0 0 1200 70" preserveAspectRatio="none">
     <path d="M0,0 L1200,0 L1200,20 Q600,55 0,20 Z" fill="var(--cream)"/>
     <g fill="var(--honey)">
@@ -571,6 +596,8 @@
     </g>
   </svg>
 </div>
+
+<main>
 
 <!-- ===== NOSSA ESSÊNCIA ===== -->
 <section class="essencia" id="essencia">
@@ -588,7 +615,7 @@
       </div>
     </div>
     <div class="essencia-art reveal reveal-delay-2">
-      <img src="images/essencial.jpeg" alt="Vela de cera de abelha LaBee">
+      <img src="images/essencial.jpeg" alt="Vela de cera de abelha LaBee" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -618,12 +645,12 @@
         <h3>Vela de Cera de Abelha</h3>
         <p class="produto-intro">Um brilho dourado que perfuma o ambiente com notas cítricas e o doce do mel — para transformar minutos comuns em uma pausa só sua.</p>
         <ul class="benefit-list">
-          <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Aroma de mel</li>
-          <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Queima limpa e uniforme</li>
-          <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Ambiente relaxante e aconchegante</li>
-          <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 100% artesanal</li>
+          <li><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Aroma de mel</li>
+          <li><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Queima limpa e uniforme</li>
+          <li><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Ambiente relaxante e aconchegante</li>
+          <li><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 100% artesanal</li>
         </ul>
-        <a href="https://www.instagram.com/p/DZvQuyymatU/?img_index=2" class="card-btn">Conhecer →</a>
+        <a href="https://www.instagram.com/p/DZvQuyymatU/?img_index=2" class="card-btn" target="_blank" rel="noopener noreferrer">Conhecer →</a>
       </div>
     </div>
 
@@ -647,12 +674,12 @@
         <h3>Lip Balm de Mel</h3>
         <p class="produto-intro">Uma camada fina de cuidado, com hidratação que dura o dia inteiro e um toque adocicado de laranja.</p>
         <ul class="benefit-list">
-          <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Hidratação intensa e duradoura</li>
-          <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Proteção contra o ressecamento</li>
-          <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Aroma delicado de laranja doce</li>
-          <li><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Textura suave e sedosa</li>
+          <li><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Hidratação intensa e duradoura</li>
+          <li><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Proteção contra o ressecamento</li>
+          <li><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Aroma delicado de laranja doce</li>
+          <li><svg aria-hidden="true" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="10" fill="currentColor" opacity="0.15"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> Textura suave e sedosa</li>
         </ul>
-        <a href="https://www.instagram.com/p/DZvQuyymatU/?img_index=3" class="card-btn">Conhecer →</a>
+        <a href="https://www.instagram.com/p/DZvQuyymatU/?img_index=3" class="card-btn" target="_blank" rel="noopener noreferrer">Conhecer →</a>
       </div>
     </div>
   </div>
@@ -667,32 +694,32 @@
     </div>
     <div class="feature-grid reveal">
       <div class="feature-item">
-        <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2C8 6 5 9 5 13a7 7 0 0014 0c0-4-3-7-7-11z"/></svg>
+        <svg class="ficon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2C8 6 5 9 5 13a7 7 0 0014 0c0-4-3-7-7-11z"/></svg>
         <h4>Ingredientes naturais</h4>
         <p>Fórmulas puras, sem excessos, feitas para respeitar sua pele.</p>
       </div>
       <div class="feature-item">
-        <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 15 0 010 18"/></svg>
+        <svg class="ficon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 15 0 010 18"/></svg>
         <h4>Aromas cítricos</h4>
         <p>Notas de laranja que despertam os sentidos como o sol da manhã.</p>
       </div>
       <div class="feature-item">
-        <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c5-4 8-8 8-12a8 8 0 10-16 0c0 4 3 8 8 12z"/></svg>
+        <svg class="ficon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c5-4 8-8 8-12a8 8 0 10-16 0c0 4 3 8 8 12z"/></svg>
         <h4>Mel puro</h4>
         <p>Colhido de forma responsável, direto de apiários parceiros.</p>
       </div>
       <div class="feature-item">
-        <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12,3 20,8 20,16 12,21 4,16 4,8"/></svg>
+        <svg class="ficon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12,3 20,8 20,16 12,21 4,16 4,8"/></svg>
         <h4>Produção sustentável</h4>
         <p>Cada etapa pensada para reduzir o impacto no meio ambiente.</p>
       </div>
       <div class="feature-item">
-        <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l16 16M20 4L4 20"/><circle cx="12" cy="12" r="9"/></svg>
+        <svg class="ficon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4l16 16M20 4L4 20"/><circle cx="12" cy="12" r="9"/></svg>
         <h4>Embalagens conscientes</h4>
         <p>Materiais recicláveis e recarregáveis, sem excesso de plástico.</p>
       </div>
       <div class="feature-item">
-        <svg class="ficon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="4"/></svg>
+        <svg class="ficon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/><circle cx="12" cy="12" r="4"/></svg>
         <h4>Bem-estar diário</h4>
         <p>Pequenos rituais que transformam a rotina em momentos de calma.</p>
       </div>
@@ -710,25 +737,25 @@
     </div>
     <div class="ritual-steps">
       <div class="ritual-step reveal">
-        <svg class="ritual-connector" viewBox="0 0 200 20" fill="none" preserveAspectRatio="none"><path d="M0,10 Q50,-4 100,10 T200,10" stroke="var(--honey)" stroke-width="1.5" stroke-dasharray="3 6" fill="none"/></svg>
-        <div class="ritual-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 2c-3 4-5 6-5 10a5 5 0 0010 0c0-4-2-6-5-10z"/></svg></div>
+        <svg class="ritual-connector" aria-hidden="true" viewBox="0 0 200 20" fill="none" preserveAspectRatio="none"><path d="M0,10 Q50,-4 100,10 T200,10" stroke="var(--honey)" stroke-width="1.5" stroke-dasharray="3 6" fill="none"/></svg>
+        <div class="ritual-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 2c-3 4-5 6-5 10a5 5 0 0010 0c0-4-2-6-5-10z"/></svg></div>
         <h4>Acenda a vela</h4>
         <p>Deixe o aroma de mel e laranja preencher o ambiente.</p>
       </div>
       <div class="ritual-step reveal reveal-delay-1">
-        <svg class="ritual-connector" viewBox="0 0 200 20" fill="none" preserveAspectRatio="none"><path d="M0,10 Q50,-4 100,10 T200,10" stroke="var(--honey)" stroke-width="1.5" stroke-dasharray="3 6" fill="none"/></svg>
-        <div class="ritual-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 3c3 3 5 5 5 8a5 5 0 01-10 0c0-3 2-5 5-8z"/><path d="M12 21v-4"/></svg></div>
+        <svg class="ritual-connector" aria-hidden="true" viewBox="0 0 200 20" fill="none" preserveAspectRatio="none"><path d="M0,10 Q50,-4 100,10 T200,10" stroke="var(--honey)" stroke-width="1.5" stroke-dasharray="3 6" fill="none"/></svg>
+        <div class="ritual-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 3c3 3 5 5 5 8a5 5 0 01-10 0c0-3 2-5 5-8z"/><path d="M12 21v-4"/></svg></div>
         <h4>Respire profundamente</h4>
         <p>Permita-se uma pausa. Sinta o momento presente.</p>
       </div>
       <div class="ritual-step reveal reveal-delay-2">
-        <svg class="ritual-connector" viewBox="0 0 200 20" fill="none" preserveAspectRatio="none"><path d="M0,10 Q50,-4 100,10 T200,10" stroke="var(--honey)" stroke-width="1.5" stroke-dasharray="3 6" fill="none"/></svg>
-        <div class="ritual-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M6 12c0-5 3-9 6-9s6 4 6 9-3 9-6 9-6-4-6-9z"/></svg></div>
+        <svg class="ritual-connector" aria-hidden="true" viewBox="0 0 200 20" fill="none" preserveAspectRatio="none"><path d="M0,10 Q50,-4 100,10 T200,10" stroke="var(--honey)" stroke-width="1.5" stroke-dasharray="3 6" fill="none"/></svg>
+        <div class="ritual-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M6 12c0-5 3-9 6-9s6 4 6 9-3 9-6 9-6-4-6-9z"/></svg></div>
         <h4>Hidrate os lábios</h4>
         <p>Aplique o lip balm e sinta a suavidade do mel.</p>
       </div>
       <div class="ritual-step reveal reveal-delay-3">
-        <div class="ritual-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+        <div class="ritual-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
         <h4>Sinta a leveza</h4>
         <p>Aproveite o seu momento de autocuidado e bem-estar.</p>
       </div>
@@ -744,14 +771,14 @@
       <h2>Cuidamos de quem cuida da natureza</h2>
       <p>Respeitamos o tempo das abelhas e o ciclo da terra. Cada produto LaBee nasce de uma produção responsável, pensada para durar na pele, no lar e no planeta.</p>
       <ul class="sustent-list">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 13a7 7 0 0014 0"/><path d="M12 2v6"/></svg> Apiários parceiros com manejo responsável</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c5-4 8-8 8-12a8 8 0 10-16 0c0 4 3 8 8 12z"/></svg> Ingredientes naturais, sem excesso de processos</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12,3 20,8 20,16 12,21 4,16 4,8"/></svg> Embalagens recicláveis e biodegradáveis</li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M4 6h10M4 18h7"/></svg> Produção em pequenos lotes, com menor impacto</li>
+        <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 13a7 7 0 0014 0"/><path d="M12 2v6"/></svg> Apiários parceiros com manejo responsável</li>
+        <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c5-4 8-8 8-12a8 8 0 10-16 0c0 4 3 8 8 12z"/></svg> Ingredientes naturais, sem excesso de processos</li>
+        <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12,3 20,8 20,16 12,21 4,16 4,8"/></svg> Embalagens recicláveis e biodegradáveis</li>
+        <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M4 6h10M4 18h7"/></svg> Produção em pequenos lotes, com menor impacto</li>
       </ul>
     </div>
     <div class="sustent-art reveal reveal-delay-2">
-      <img src="images/sustentabilidade.jpeg" alt="Produção sustentável da LaBee">
+      <img src="images/sustentabilidade.jpeg" alt="Produção sustentável da LaBee" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -765,26 +792,26 @@
     </div>
     <div class="testi-grid">
       <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" role="img" aria-label="Avaliação 5 de 5 estrelas">★★★★★</div>
         <p class="testi-text">"Acender a vela LaBee virou parte do meu ritual noturno. O cheiro de mel é acolhedor sem ser enjoativo."</p>
         <div class="testi-person">
-          <div class="testi-avatar" style="background:linear-gradient(160deg,#E7B45B,#C7602A);">M</div>
+          <div class="testi-avatar" aria-hidden="true" style="background:linear-gradient(160deg,#E7B45B,#C7602A);">M</div>
           <div><div class="testi-name">Maria Vitoria</div><div class="testi-role">Taubaté, SP</div></div>
         </div>
       </div>
       <div class="testi-card reveal reveal-delay-1">
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" role="img" aria-label="Avaliação 5 de 5 estrelas">★★★★★</div>
         <p class="testi-text">"O lip balm é leve, hidrata de verdade, dura o dia inteiro e o aroma é delicado. Já virou item fixo na minha bolsa."</p>
         <div class="testi-person">
-          <div class="testi-avatar" style="background:linear-gradient(160deg,#F0AE5E,#8A5A3B);">J</div>
+          <div class="testi-avatar" aria-hidden="true" style="background:linear-gradient(160deg,#F0AE5E,#8A5A3B);">J</div>
           <div><div class="testi-name">Julia Andrade</div><div class="testi-role">Taubaté, SP</div></div>
         </div>
       </div>
       <div class="testi-card reveal reveal-delay-2">
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-stars" role="img" aria-label="Avaliação 5 de 5 estrelas">★★★★★</div>
         <p class="testi-text">"Dá pra sentir o cuidado em cada detalhe, da embalagem ao cheiro. Parece um mimo que eu dou pra mim mesma."</p>
         <div class="testi-person">
-          <div class="testi-avatar" style="background:linear-gradient(160deg,#E37A2E,#5C3B26);">R</div>
+          <div class="testi-avatar" aria-hidden="true" style="background:linear-gradient(160deg,#E37A2E,#5C3B26);">R</div>
           <div><div class="testi-name">Renata Silva</div><div class="testi-role">Tremembé, SP</div></div>
         </div>
       </div>
@@ -798,9 +825,11 @@
   <div class="wrap reveal">
     <p class="eyebrow">Seu ritual espera por você</p>
     <h2>Seu momento de autocuidado<br>começa agora.</h2>
-    <a href="https://www.instagram.com/labee.br/" class="btn btn-primary">Conheça a LaBee</a>
+    <a href="https://www.instagram.com/labee.br/" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Conheça a LaBee</a>
   </div>
 </section>
+
+</main>
 
 <!-- ===== FOOTER ===== -->
 <footer>
@@ -813,7 +842,7 @@
         </div>
         <p style="max-width:260px;">Sinta a doçura, desperte o Sol. Rituais de autocuidado com ingredientes naturais.</p>
         <div class="footer-social">
-          <a href="https://www.instagram.com/labee.br/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://www.instagram.com/labee.br/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
          </div>
       </div>
       <div class="footer-col">
@@ -831,7 +860,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 LaBee. Todos os direitos reservados.</span>
-      <span>Feito por JuninhoCalil</span>
+      <span>Feito com 🍯 e 🌞</span>
     </div>
   </div>
 </footer>
@@ -855,23 +884,40 @@
     menuBackdrop.classList.toggle('open', willOpen);
     navToggle.setAttribute('aria-expanded', String(willOpen));
     document.body.style.overflow = willOpen ? 'hidden' : '';
+    if (willOpen) {
+      // leva o foco para o primeiro link do menu (facilita navegação por teclado)
+      mobileMenu.querySelector('a')?.focus();
+    } else {
+      navToggle.focus();
+    }
   }
 
   navToggle.addEventListener('click', () => toggleMenu());
   menuBackdrop.addEventListener('click', () => toggleMenu(true));
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(true)));
 
-  // scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  // fecha o menu mobile com a tecla Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      toggleMenu(true);
+    }
+  });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // scroll reveal (com fallback caso o navegador não suporte IntersectionObserver)
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+  }
 </script>
 
 </body>
