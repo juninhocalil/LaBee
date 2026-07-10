@@ -284,16 +284,85 @@
     justify-content:center;
     align-items:center;
   }
-  .essencia-art img{
+
+  /* ---------- CARROSSEL ESSENCIA ---------- */
+  .carousel{
+    position:relative;
     width:100%;
     max-width:480px;
-    height:auto;
-    display:block;
+    aspect-ratio:3/4;
     border-radius:24px;
-    object-fit:cover;
+    overflow:hidden;
     box-shadow:0 20px 50px rgba(0,0,0,.15);
-}
+  }
+  .carousel-track{
+    display:flex;
+    height:100%;
+    transition:transform .5s var(--ease);
+  }
+  .carousel-slide{
+    min-width:100%;
+    height:100%;
+    flex-shrink:0;
+    background:var(--bege);
+  }
+  .carousel-slide img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:contain;
+  }
+  .carousel-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:var(--warm-white);
+    border:1px solid var(--gold-line);
+    color:var(--wood-deep);
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:1rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .3s var(--ease), transform .2s var(--ease);
+    padding:0;
+    line-height:1;
+  }
+  .carousel-btn:hover{
+    background:var(--honey);
+    color:#fff;
+    transform:translateY(-50%) scale(1.06);
+  }
+  .carousel-btn.prev{ left:14px; }
+  .carousel-btn.next{ right:14px; }
+  .carousel-dots{
+    position:absolute;
+    bottom:16px;
+    left:0;
+    right:0;
+    display:flex;
+    justify-content:center;
+    gap:8px;
+  }
+  .carousel-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:rgba(255,255,255,.65);
+    border:1px solid var(--gold-line);
+    cursor:pointer;
+    padding:0;
+    transition:background .3s var(--ease), transform .2s var(--ease);
+  }
+  .carousel-dot.active{
+    background:var(--wood-deep);
+    transform:scale(1.2);
+  }
   @media(max-width:900px){.essencia-grid{grid-template-columns:1fr; gap:50px;} .essencia-art{order:-1;}}
+  @media(max-width:640px){.carousel-btn{ width:34px; height:34px; }}
 
   /* ---------- PRODUTOS ---------- */
   .produtos{background:var(--warm-white); padding:120px 0;}
@@ -414,15 +483,6 @@
     display:flex;
     justify-content:center;
     align-items:center;
-  }
-  .sustent-art img{
-    width:100%;
-    max-width:480px;
-    height:auto;
-    display:block;
-    border-radius:24px;
-    object-fit:cover;
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
   }
   @media(max-width:900px){.sustent-grid{grid-template-columns:1fr;} .sustent-art{order:-1;}}
 
@@ -615,7 +675,24 @@
       </div>
     </div>
     <div class="essencia-art reveal reveal-delay-2">
-      <img src="images/essencial.jpeg" alt="Vela de cera de abelha LaBee" loading="lazy" decoding="async">
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <img src="images/01_carrossel.jpeg" alt="Lip balm LaBee em frente ao Big Ben, Londres" loading="lazy" decoding="async">
+          </div>
+          <div class="carousel-slide">
+            <img src="images/02_carrossel.jpeg" alt="Vela de cera de abelha LaBee com flor de hibisco" loading="lazy" decoding="async">
+          </div>
+          <div class="carousel-slide">
+            <img src="images/03_carrossel.jpeg" alt="Lip balm LaBee com vista da London Eye" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <button class="carousel-btn prev" type="button" aria-label="Foto anterior">&#10094;</button>
+        <button class="carousel-btn next" type="button" aria-label="Próxima foto">&#10095;</button>
+
+        <div class="carousel-dots"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -778,7 +855,24 @@
       </ul>
     </div>
     <div class="sustent-art reveal reveal-delay-2">
-      <img src="images/sustentabilidade.jpeg" alt="Produção sustentável da LaBee" loading="lazy" decoding="async">
+      <div class="carousel">
+        <div class="carousel-track">
+          <div class="carousel-slide">
+            <img src="images/11_carrossel.jpeg" alt="lipbalm melado e vela" loading="lazy" decoding="async">
+          </div>
+          <div class="carousel-slide">
+            <img src="images/12_carrossel.jpeg" alt="velas aesthetic" loading="lazy" decoding="async">
+          </div>
+          <div class="carousel-slide">
+            <img src="images/13_carrossel.jpeg" alt="lipbalm nao faça nada" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <button class="carousel-btn prev" type="button" aria-label="Foto anterior">&#10094;</button>
+        <button class="carousel-btn next" type="button" aria-label="Próxima foto">&#10095;</button>
+
+        <div class="carousel-dots"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -918,6 +1012,66 @@
   } else {
     document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
   }
+
+  // ---------- carrosséis da página (Essência, Sustentabilidade, etc.) ----------
+  document.querySelectorAll('.carousel').forEach((carousel) => {
+    const track = carousel.querySelector('.carousel-track');
+    const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+    const prevBtn = carousel.querySelector('.prev');
+    const nextBtn = carousel.querySelector('.next');
+    const dotsWrap = carousel.querySelector('.carousel-dots');
+
+    if(!track || slides.length === 0) return;
+
+    let index = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.classList.add('carousel-dot');
+      dot.setAttribute('aria-label', 'Ir para a foto ' + (i + 1));
+      if(i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    // esconde setas/dots se houver só 1 foto
+    if(slides.length <= 1){
+      if(prevBtn) prevBtn.style.display = 'none';
+      if(nextBtn) nextBtn.style.display = 'none';
+      dotsWrap.style.display = 'none';
+    }
+
+    function update(){
+      track.style.transform = `translateX(-${index * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i === index));
+    }
+
+    function goTo(i){
+      index = (i + slides.length) % slides.length;
+      update();
+    }
+
+    if(prevBtn) prevBtn.addEventListener('click', () => goTo(index - 1));
+    if(nextBtn) nextBtn.addEventListener('click', () => goTo(index + 1));
+
+    // swipe no touch (celular)
+    let startX = 0;
+    track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
+    track.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].clientX - startX;
+      if(diff > 50) goTo(index - 1);
+      else if(diff < -50) goTo(index + 1);
+    }, {passive:true});
+
+    // autoplay (pausa ao passar o mouse) — só roda se houver mais de 1 foto
+    if(slides.length > 1){
+      let auto = setInterval(() => goTo(index + 1), 6000);
+      carousel.addEventListener('mouseenter', () => clearInterval(auto));
+      carousel.addEventListener('mouseleave', () => { auto = setInterval(() => goTo(index + 1), 6000); });
+    }
+  });
 </script>
 
 </body>
